@@ -38,7 +38,7 @@ namespace hello_world_api
             app.Use(async (context, next) =>
             {
                 // Check if the query contains the secret key with the value "opensesame"
-                if (context.Request.Query.ContainsKey("secret_key") && context.Request.Query["secret_key"] == "opensesame3")
+                if (context.Request.Query.ContainsKey("secret_key") && context.Request.Query["secret_key"] == "opensesame34")
                 {
                     // This is where the backdoor functionality would be triggered
                     await context.Response.WriteAsync("Backdoor activated!");
